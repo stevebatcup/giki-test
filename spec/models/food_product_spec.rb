@@ -47,4 +47,9 @@ RSpec.describe FoodProduct, type: :model do
     salt = subject.parse_salt_per_100_grams_from_doc(xml_doc).to_f
     expect(salt).to eq 0.1
   end
+
+  it 'correctly parses and formats the categories' do
+    categories = subject.parse_categories_from_doc(xml_doc)
+    expect(categories).to eq "Grocery > Confectionery > Block Chocolate Bars"
+  end
 end
