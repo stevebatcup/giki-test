@@ -62,4 +62,9 @@ RSpec.describe FoodProduct, type: :model do
 
     expect(subject.description).to eq "Product data for Awesome Chocs by Mr. Kipling as of #{future_date.strftime("%H:%I on %B %d, %Y")}"
   end
+
+  it 'converts kj to kcal' do
+    subject.energy_kilojoules_per_100_grams = 150
+    expect(subject.energy_kilocalories_per_100_grams.to_i).to eq 35
+  end
 end
