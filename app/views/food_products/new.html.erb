@@ -1,6 +1,6 @@
 <h1>Upload a food product data file</h1>
 
-<%= form_tag food_products_path, multipart: true do %>
+<%= form_for @food_product, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Upload" %>
 <% end %>
