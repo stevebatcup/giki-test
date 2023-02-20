@@ -12,4 +12,5 @@
 * Post to GitHub in a new repository
 
 ## Run in development
-To use foreman, which includes the tailwind watch command, run `./bin/dev` or just `rails s` to spin up the standalone rails server.
+* To use foreman, which includes the tailwind watch command, run `./bin/dev` 
+* Or just run `rails s` to spin up the standalone rails server.
