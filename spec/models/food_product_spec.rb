@@ -49,7 +49,17 @@ RSpec.describe FoodProduct, type: :model do
   end
 
   it 'correctly parses and formats the categories' do
-    categories = subject.parse_categories_from_doc(xml_doc)
+    categories = subject.build_categories_from_doc(xml_doc)
     expect(categories).to eq "Grocery > Confectionery > Block Chocolate Bars"
+  end
+
+  it 'correctly parses and formats the description' do
+    future_date = 2.months.from_now
+    subject.name = "Awesome Chocs"
+    subject.manufacturer = "Mr. Kipling"
+    subject.data_valid_at = future_date
+    description = subject.build_description_from_doc(xml_doc)
+
+    expect(description).to eq "Product data for Awesome Chocs by Mr. Kipling as of #{future_date.strftime("%H:%I on %B %d, %Y")}"
   end
 end

@@ -22,7 +22,8 @@ module Importable
       return product unless product.valid?
 
       product.calculate_macros_from_doc(doc)
-      product.get_categories_from_doc!(doc)
+      product.build_categories_from_doc(doc)
+      product.build_description_from_doc(doc)
       product
     end
   end
@@ -65,12 +66,18 @@ module Importable
     numeric_nutrition_node(doc).NutrientValues("[@Name='Salt (g)']").Per100.Value.text
   end
 
-  def get_categories_from_doc!(doc)
+  def build_categories_from_doc(doc)
     categories = []
     category_level_nodes = doc.Product.Data.Language.Categorisations.Categorisation.Level
     category_level_nodes.each { |c| categories << c.text }
 
     self.categories = categories.join(" > ")
+  end
+
+  def build_description_from_doc(doc)
+    return if name.nil? || manufacturer.nil? || data_valid_at.nil?
+
+    "Product data for #{name} by #{manufacturer} as of #{data_valid_at.strftime("%H:%I on %B %d, %Y")}"
   end
 
   private
