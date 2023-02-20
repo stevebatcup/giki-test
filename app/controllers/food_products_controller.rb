@@ -4,13 +4,16 @@ class FoodProductsController < ApplicationController
   def new; end
 
   def create
-    unless params[:file].present? 
+    if params[:file].present? 
+      FoodProduct.import_from_xml(params[:file])
+      flash[:success] = "Food Product Imported"
+    else
       flash[:error] = "Please make sure to upload an XML file"
-      return redirect_to new_food_product_path
     end
-    
-    foo
-
+    redirect_to new_food_product_path
+  rescue Nokogiri::XML::SyntaxError => e
+    flash[:error] = "Please make sure your XML file is valid: #{e.message}"
+    return redirect_to new_food_product_path
   end
 
   private 
