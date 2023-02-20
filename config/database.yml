@@ -13,3 +13,7 @@ default: &default
 development:
   <<: *default
   database: giki_code_test_development
+
+test:
+  <<: *default
+  database: giki_code_test_test
