@@ -21,7 +21,7 @@ RSpec.describe "Import Food Products", type: :system, js: true do
       attach_file('file', File.expand_path('spec/support/invalid_food_product_wrong_nodes.xml'))
       submit_form
 
-      expect(page).to have_content "Please make sure your XML file is valid: Must contain valid data for a food product"
+      expect(page).to have_content "Please make sure your XML file is valid: Name can't be blank"
     end
 
     scenario "submits the import XML form with invalid XML and returns an error message" do

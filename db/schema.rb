@@ -11,18 +11,21 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_02_20_120225) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "food_products", force: :cascade do |t|
     t.string "name"
     t.string "manufacturer"
     t.text "description"
     t.string "categories"
-    t.float "energy_kilojoules_per_100_grams", default: 0.0
-    t.float "fat_grams_per_100_grams", default: 0.0
-    t.float "saturates_grams_per_100_grams", default: 0.0
-    t.float "carbohydrate_grams_per_100_grams", default: 0.0
-    t.float "sugars_grams_per_100_grams", default: 0.0
-    t.float "protein_grams_per_100_grams", default: 0.0
-    t.float "salt_grams_per_100_grams", default: 0.0
+    t.float "energy_kilojoules_per_100_grams"
+    t.float "fat_grams_per_100_grams"
+    t.float "saturates_grams_per_100_grams"
+    t.float "carbohydrate_grams_per_100_grams"
+    t.float "sugars_grams_per_100_grams"
+    t.float "protein_grams_per_100_grams"
+    t.float "salt_grams_per_100_grams"
     t.json "data", default: {}
     t.datetime "data_valid_at"
     t.datetime "created_at", null: false
