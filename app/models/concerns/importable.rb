@@ -77,7 +77,7 @@ module Importable
   def build_description_from_doc(doc)
     return if name.nil? || manufacturer.nil? || data_valid_at.nil?
 
-    "Product data for #{name} by #{manufacturer} as of #{data_valid_at.strftime("%H:%I on %B %d, %Y")}"
+    self.description = "Product data for #{name} by #{manufacturer} as of #{data_valid_at.strftime("%H:%I on %B %d, %Y")}"
   end
 
   private
