@@ -5,7 +5,7 @@ class FoodProductsController < ApplicationController
 
   def create
     if params[:file].present? 
-      product = FoodProduct.import_from_xml(params[:file])
+      product = FoodProduct.import_from_xml File.read(params[:file])
       if product.save
         flash[:success] = "Food Product Imported"
       else
@@ -16,7 +16,7 @@ class FoodProductsController < ApplicationController
     end
     
     redirect_to new_food_product_path
-  rescue Nokogiri::XML::SyntaxError => e
+  rescue Nokogiri::XML::SyntaxError, NoMethodError => e
     flash[:error] = "#{invalid_xml_msg}: #{e.message}"
     return redirect_to new_food_product_path
   end
